@@ -1,0 +1,14 @@
+T1 그만둠 KOWEPS 6078 689 calc 0.575 LR 0.686 LGB 0.724 Δcalc 0.149 lo 0.128 통과
+T1 그만둠 KLIPS 9768 941 calc 0.635 LR 0.701 LGB 0.723 Δcalc 0.089 lo 0.072 통과
+T1 그만둠 NaSTaB 8929 637 calc 0.711 LR 0.758 LGB 0.766 Δcalc 0.055 lo 0.043 통과
+T1 그만둠 KHP 3285 558 calc 0.633 LR 0.687 LGB 0.697 Δcalc 0.064 lo 0.038 통과
+T1 그만둠 KLoSA 2505 440 calc 0.559 LR 0.657 LGB 0.657 Δcalc 0.098 lo 0.061 통과
+T1 그만둠 KReIS 1085 124 calc 0.469 LR 0.669 LGB 0.682 Δcalc 0.213 lo 0.142 통과
+T2 재취업 KOWEPS 2568 538 calc 0.573 LR 0.746 LGB 0.779 Δcalc 0.205 lo 0.178 통과
+T2 재취업 KLIPS 4800 729 calc 0.587 LR 0.749 LGB 0.769 Δcalc 0.181 lo 0.157 통과
+T2 재취업 NaSTaB 1665 441 calc 0.631 LR 0.698 LGB 0.717 Δcalc 0.086 lo 0.062 통과
+T2 재취업 KHP 4094 401 calc 0.632 LR 0.695 LGB 0.688 Δcalc 0.057 lo 0.024 통과
+T2 재취업 KLoSA 2410 240 calc 0.562 LR 0.713 LGB 0.723 Δcalc 0.161 lo 0.114 통과
+T2 재취업 KReIS 1185 67 calc 0.515 LR 0.673 LGB 0.688 Δcalc 0.172 lo 0.092 통과
+T1 그만둠 성공 6/6 meta Δcalc 0.1041 meta Δlr 0.0161
+T2 재취업 성공 6/6 meta Δcalc 0.1424 meta Δlr 0.0162

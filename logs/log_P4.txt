@@ -1,0 +1,26 @@
+P4 KOWEPS_r 21
+P4 NaSTaB_r 4
+P4 KReIS_r 5
+P4 KReIS_rn 5
+P4 KLIPS_r 17
+        task               method     auc  miss_cols  miss_mean  miss_max  miss_rows
+0   KOWEPS_r  LightGBM 기본 처리 (v3)  0.8608        NaN        NaN       NaN        NaN
+1   KOWEPS_r          중앙값 + 결측 표시  0.8608        NaN        NaN       NaN        NaN
+2   KOWEPS_r        반복 대체 + 결측 표시  0.8626        NaN        NaN       NaN        NaN
+3   KOWEPS_r                _info     NaN       17.0     0.0742    0.4269     0.6012
+4   NaSTaB_r  LightGBM 기본 처리 (v3)  0.7911        NaN        NaN       NaN        NaN
+5   NaSTaB_r          중앙값 + 결측 표시  0.7912        NaN        NaN       NaN        NaN
+6   NaSTaB_r        반복 대체 + 결측 표시  0.7899        NaN        NaN       NaN        NaN
+7   NaSTaB_r                _info     NaN       14.0     0.1153    0.5155     0.7905
+8    KReIS_r  LightGBM 기본 처리 (v3)  0.7416        NaN        NaN       NaN        NaN
+9    KReIS_r          중앙값 + 결측 표시  0.7484        NaN        NaN       NaN        NaN
+10   KReIS_r        반복 대체 + 결측 표시  0.7483        NaN        NaN       NaN        NaN
+11   KReIS_r                _info     NaN       22.0     0.0853    0.4157     0.7828
+12  KReIS_rn  LightGBM 기본 처리 (v3)  0.7867        NaN        NaN       NaN        NaN
+13  KReIS_rn          중앙값 + 결측 표시  0.7878        NaN        NaN       NaN        NaN
+14  KReIS_rn        반복 대체 + 결측 표시  0.7879        NaN        NaN       NaN        NaN
+15  KReIS_rn                _info     NaN       23.0     0.0851    0.4153     0.7874
+16   KLIPS_r  LightGBM 기본 처리 (v3)  0.8017        NaN        NaN       NaN        NaN
+17   KLIPS_r          중앙값 + 결측 표시  0.8028        NaN        NaN       NaN        NaN
+18   KLIPS_r        반복 대체 + 결측 표시  0.8054        NaN        NaN       NaN        NaN
+19   KLIPS_r                _info     NaN       15.0     0.0763    0.3908     0.6023 {'est': np.float64(0.00021702895061663537), 'se': np.float64(0.0008725811854807402), 'lo': np.float64(-0.0014932301729256156), 'hi': np.float64(0.0019272880741588862), 'p': np.float64(0.8035768823012167), 'tau2': np.float64(2.8081846252556406e-08), 'I2': np.float64(0.006969552265081109), 'Q': np.float64(2.014036935687075), 'fe': np.float64(0.0002113126048319848)} {'est': np.float64(0.001300221110970206), 'se': np.float64(0.0012354343266435613), 'lo': np.float64(-0.0011212301692511742), 'hi': np.float64(0.003721672391191586), 'p': np.float64(0.29259749907305166), 'tau2': np.float64(7.492627363228361e-07), 'I2': np.float64(0.11243598616668658), 'Q': np.float64(2.253358595919375), 'fe': np.float64(0.0013719799639023463)} v3 유지

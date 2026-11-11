@@ -1,0 +1,13 @@
+KOWEPS_r {'A': np.float64(3.23), 'B': np.float64(2.69), 'C': np.float64(3.13)}
+NaSTaB_r {'A': np.float64(3.13), 'B': np.float64(2.82), 'C': np.float64(2.96)}
+KReIS_r {'A': np.float64(1.5), 'B': np.float64(4.56), 'C': np.float64(1.9)}
+KReIS_rn {'A': np.float64(2.72), 'B': np.float64(3.5), 'C': np.float64(1.72)}
+KLIPS_r {'A': np.float64(2.76), 'B': np.float64(2.05), 'C': np.float64(2.98)}
+method    A 원 확률  B 마지막 연도 Platt  C 교차 예측 Platt
+task                                           
+KLIPS_r     2.76            2.05           2.98
+KOWEPS_r    3.23            2.69           3.13
+KReIS_r     1.50            4.56           1.90
+KReIS_rn    2.72            3.50           1.72
+NaSTaB_r    3.13            2.82           2.96
+C 최저 1 /5 · A보다 1%p 넘게 나쁜 과제 0 → 불채택

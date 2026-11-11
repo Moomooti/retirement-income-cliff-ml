@@ -1,0 +1,13 @@
+KOWEPS_r done 170 s {'B0 지금 소득': 0.811, 'LR_L2': 0.874, 'LightGBM': 0.861, '최종: LightGBM+로지스틱': 0.87}
+NaSTaB_r done 62 s {'B0 지금 소득': 0.724, 'LR_L2': 0.786, 'LightGBM': 0.791, '최종: LightGBM+로지스틱': 0.794}
+KReIS_r done 55 s {'B0 지금 소득': 0.668, 'LR_L2': 0.732, 'LightGBM': 0.742, '최종: LightGBM+로지스틱': 0.746}
+KReIS_rn done 60 s {'B0 지금 소득': 0.706, 'LR_L2': 0.78, 'LightGBM': 0.787, '최종: LightGBM+로지스틱': 0.796}
+KLIPS_r done 165 s {'B0 지금 소득': 0.751, 'LR_L2': 0.804, 'LightGBM': 0.802, '최종: LightGBM+로지스틱': 0.807}
+KHP_r done 82 s {'B0 지금 소득': 0.74, 'LR_L2': 0.773, 'LightGBM': 0.767, '최종: LightGBM+로지스틱': 0.773}
+KLoSA_r done 72 s {'B0 지금 소득': 0.757, 'LR_L2': 0.761, 'LightGBM': 0.776, '최종: LightGBM+로지스틱': 0.774}
+{'LightGBM−로지스틱': np.float64(-0.0018), 'LightGBM−지금소득': np.float64(0.0598), '로지스틱−지금소득': np.float64(0.063), '최종−계산기형': np.float64(0.0381), '최종−지금소득': np.float64(0.064)}
+boot {'LightGBM−로지스틱': np.float64(-0.0019), '최종−계산기형': np.float64(0.0382), '최종−지금소득': np.float64(0.0645)}
+fq done
+pooled 0.8014578127486264 0.750843270991611 [0.48  0.512 0.487 0.505 0.445]
+imp/sub/cal done
+ALL DONE

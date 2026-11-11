@@ -1,0 +1,14 @@
+# 모델 (학습 환경과 같은 버전: lr_pipeline.joblib은 scikit-learn 1.9.1에 묶여 있음)
+lightgbm==4.7.0
+scikit-learn==1.9.1
+numpy==2.5.3
+pandas==3.0.5
+joblib==1.6.0
+scipy==1.18.1
+# API
+fastapi==0.162.0
+pydantic==2.14.2
+starlette==1.10.0
+uvicorn==0.54.0
+# 챗봇
+anthropic==2.4.0

@@ -1,0 +1,639 @@
+[
+ {
+  "model": "연구 모델(공통)",
+  "step": "대상·정답",
+  "claim": "대상 = 50~69세 · 지금 r ≥ 1 · t+2와 t+4 관측, y = t+2~t+4 중 2번 이상 r<1(격년은 2번 중 2번)",
+  "result": "통과",
+  "evidence": "label_v3.py label() · 대상 필터"
+ },
+ {
+  "model": "연구 모델(공통)",
+  "step": "분할",
+  "claim": "시험 = 그 과제의 최근 2개 조사연도, 학습 = 시험 시작 4년 전까지",
+  "result": "통과",
+  "evidence": "label_v3.py"
+ },
+ {
+  "model": "연구 모델(공통)",
+  "step": "열 고르기",
+  "claim": "공통 17개 + (학습셋에서 20% 이상 채워지고 값이 2종 이상인 x_ 변수) + 판정용 소득 열",
+  "result": "통과",
+  "evidence": "label_v3.py · common_ml.extra_features"
+ },
+ {
+  "model": "연구 모델(공통)",
+  "step": "열 고르기",
+  "claim": "자산·부채 원금액은 넣지 않고 소득 대비 배수(_r, −50~200으로 자름)와 sign·log(1+|x|)로 넣음",
+  "result": "통과",
+  "evidence": "common_ml.EXCL · build_common.py"
+ },
+ {
+  "model": "연구 모델(공통)",
+  "step": "극단값",
+  "claim": "학습셋 0.5%·99.5% 분위로 자르고 시험셋에도 같은 경계 적용(범주·값 3종 이하 제외)",
+  "result": "통과",
+  "evidence": "v3_full.winsor"
+ },
+ {
+  "model": "연구 모델(공통)",
+  "step": "내부 분할",
+  "claim": "내부 검증 = 학습셋 마지막 2개 연도, 내부 학습 = 그 4년 전까지",
+  "result": "통과",
+  "evidence": "v3_full.py"
+ },
+ {
+  "model": "연구 모델(공통)",
+  "step": "LightGBM",
+  "claim": "격자 num_leaves 15/31 × min_child_samples 40/150, 학습률 0.03 · 행 0.8 · 열 0.8 · L2 1.0, 최대 3000회 + 조기 종료 100(내부 검증 AUC)",
+  "result": "통과",
+  "evidence": "v3_full.tune"
+ },
+ {
+  "model": "연구 모델(공통)",
+  "step": "LightGBM",
+  "claim": "고른 설정으로 학습셋 전체 재학습, 반복 수 = max(50, 조기 종료 지점 × 1.1)",
+  "result": "통과",
+  "evidence": "v3_full.tune"
+ },
+ {
+  "model": "연구 모델(공통)",
+  "step": "로지스틱",
+  "claim": "숫자 열: 중앙값 대체 + 결측 표시 → 표준화 / 범주 열: −1 채움 → 원-핫(50건 미만 묶음) → L2 로지스틱 C=1",
+  "result": "통과",
+  "evidence": "v3_full.prep"
+ },
+ {
+  "model": "연구 모델(공통)",
+  "step": "앙상블",
+  "claim": "최종 = 시험셋 안에서 LightGBM 순위 + 로지스틱 순위",
+  "result": "통과",
+  "evidence": "v3_full.py"
+ },
+ {
+  "model": "연구 모델(공통)",
+  "step": "기준선",
+  "claim": "B0 = −지금 소득, B1 = [지금 소득, 나이, 취업] 로지스틱",
+  "result": "통과",
+  "evidence": "v3_full.py"
+ },
+ {
+  "model": "연구 모델(공통)",
+  "step": "평가",
+  "claim": "최종 − B0 AUC 차이를 DeLong으로 검정",
+  "result": "통과",
+  "evidence": "v3_full.py · common_ml.delong"
+ },
+ {
+  "model": "연구 모델(공통)",
+  "step": "이유",
+  "claim": "LightGBM pred_contrib(TreeSHAP) 기여 중 위험을 올린 상위 3개 · 중앙값으로 바꿔 무작위 3개와 비교",
+  "result": "통과",
+  "evidence": "m_abc.py M-A"
+ },
+ {
+  "model": "연구 모델(공통)",
+  "step": "판단 보류",
+  "claim": "내부 학습 모델로 내부 검증 점수 → 클래스별 경계 q1·q0(α=0.10) → 둘 다 포함이면 보류",
+  "result": "통과",
+  "evidence": "m_abc.py M-C"
+ },
+ {
+  "model": "연구 모델(공통)",
+  "step": "이유·보류 범위",
+  "claim": "이유·판단 보류 실험은 5개 과제(판정 3 + 필요생활비 + 노동)만, 의료·고령화(이식)는 안 함",
+  "result": "통과",
+  "evidence": "mabc_out_AC: ['KLIPS_r', 'KOWEPS_r', 'KReIS_r', 'KReIS_rn', 'NaSTaB_r']"
+ },
+ {
+  "model": "한국복지패널",
+  "step": "입력",
+  "claim": "입력 43개 = 공통 17 + 추가 26",
+  "result": "통과",
+  "evidence": "v3_data 열 == v3_out data_info 열: True, 앞 17개 == COMMON: True"
+ },
+ {
+  "model": "한국복지패널",
+  "step": "입력",
+  "claim": "추가 입력이 모두 이름표·묶음에 들어감",
+  "result": "통과",
+  "evidence": "이름표 없는 열: []"
+ },
+ {
+  "model": "한국복지패널",
+  "step": "열 고르기",
+  "claim": "추가 x_ 변수는 모두 학습셋 20% 이상 채워짐",
+  "result": "통과",
+  "evidence": "20% 미만: []"
+ },
+ {
+  "model": "한국복지패널",
+  "step": "분할",
+  "claim": "학습 27,294행(2006–2016) · 시험 4,984행(2020·2021)",
+  "result": "통과",
+  "evidence": "label_v3.csv 학습 27294 · 시험 4984"
+ },
+ {
+  "model": "한국복지패널",
+  "step": "LightGBM",
+  "claim": "고른 설정 leaves 15 · min_child 150 · 반복 151회 (내부 검증 AUC 0.855)",
+  "result": "통과",
+  "evidence": "v3_out tune"
+ },
+ {
+  "model": "한국복지패널",
+  "step": "평가",
+  "claim": "시험 AUC 최종 0.870 vs 지금 소득 0.811 (차이 +0.058, 95% +0.044~+0.073)",
+  "result": "통과",
+  "evidence": "v3_out zoo == cmp"
+ },
+ {
+  "model": "한국복지패널",
+  "step": "판단 보류",
+  "claim": "보정 행 = 내부 검증 5,383행",
+  "result": "통과",
+  "evidence": "내부 검증 행 5383"
+ },
+ {
+  "model": "재정패널",
+  "step": "입력",
+  "claim": "입력 35개 = 공통 17 + 추가 18",
+  "result": "통과",
+  "evidence": "v3_data 열 == v3_out data_info 열: True, 앞 17개 == COMMON: True"
+ },
+ {
+  "model": "재정패널",
+  "step": "입력",
+  "claim": "추가 입력이 모두 이름표·묶음에 들어감",
+  "result": "통과",
+  "evidence": "이름표 없는 열: []"
+ },
+ {
+  "model": "재정패널",
+  "step": "열 고르기",
+  "claim": "추가 x_ 변수는 모두 학습셋 20% 이상 채워짐",
+  "result": "통과",
+  "evidence": "20% 미만: []"
+ },
+ {
+  "model": "재정패널",
+  "step": "분할",
+  "claim": "학습 8,498행(2008–2015) · 시험 3,699행(2019·2020)",
+  "result": "통과",
+  "evidence": "label_v3.csv 학습 8498 · 시험 3699"
+ },
+ {
+  "model": "재정패널",
+  "step": "LightGBM",
+  "claim": "고른 설정 leaves 15 · min_child 40 · 반복 105회 (내부 검증 AUC 0.785)",
+  "result": "통과",
+  "evidence": "v3_out tune"
+ },
+ {
+  "model": "재정패널",
+  "step": "평가",
+  "claim": "시험 AUC 최종 0.794 vs 지금 소득 0.724 (차이 +0.070, 95% +0.047~+0.092)",
+  "result": "통과",
+  "evidence": "v3_out zoo == cmp"
+ },
+ {
+  "model": "재정패널",
+  "step": "판단 보류",
+  "claim": "보정 행 = 내부 검증 2,728행",
+  "result": "통과",
+  "evidence": "내부 검증 행 2728"
+ },
+ {
+  "model": "국민노후보장패널",
+  "step": "입력",
+  "claim": "입력 45개 = 공통 17 + 추가 28",
+  "result": "통과",
+  "evidence": "v3_data 열 == v3_out data_info 열: True, 앞 17개 == COMMON: True"
+ },
+ {
+  "model": "국민노후보장패널",
+  "step": "입력",
+  "claim": "추가 입력이 모두 이름표·묶음에 들어감",
+  "result": "통과",
+  "evidence": "이름표 없는 열: []"
+ },
+ {
+  "model": "국민노후보장패널",
+  "step": "열 고르기",
+  "claim": "추가 x_ 변수는 모두 학습셋 20% 이상 채워짐",
+  "result": "통과",
+  "evidence": "20% 미만: []"
+ },
+ {
+  "model": "국민노후보장패널",
+  "step": "분할",
+  "claim": "학습 5,774행(2007–2013) · 시험 1,752행(2017·2019)",
+  "result": "통과",
+  "evidence": "label_v3.csv 학습 5774 · 시험 1752"
+ },
+ {
+  "model": "국민노후보장패널",
+  "step": "LightGBM",
+  "claim": "고른 설정 leaves 15 · min_child 150 · 반복 78회 (내부 검증 AUC 0.694)",
+  "result": "통과",
+  "evidence": "v3_out tune"
+ },
+ {
+  "model": "국민노후보장패널",
+  "step": "평가",
+  "claim": "시험 AUC 최종 0.746 vs 지금 소득 0.668 (차이 +0.078, 95% +0.048~+0.108)",
+  "result": "통과",
+  "evidence": "v3_out zoo == cmp"
+ },
+ {
+  "model": "국민노후보장패널",
+  "step": "판단 보류",
+  "claim": "보정 행 = 내부 검증 2,886행",
+  "result": "통과",
+  "evidence": "내부 검증 행 2886"
+ },
+ {
+  "model": "국민노후보장패널 · 필요생활비 기준",
+  "step": "입력",
+  "claim": "입력 45개 = 공통 17 + 추가 28",
+  "result": "통과",
+  "evidence": "v3_data 열 == v3_out data_info 열: True, 앞 17개 == COMMON: True"
+ },
+ {
+  "model": "국민노후보장패널 · 필요생활비 기준",
+  "step": "입력",
+  "claim": "추가 입력이 모두 이름표·묶음에 들어감",
+  "result": "통과",
+  "evidence": "이름표 없는 열: []"
+ },
+ {
+  "model": "국민노후보장패널 · 필요생활비 기준",
+  "step": "열 고르기",
+  "claim": "추가 x_ 변수는 모두 학습셋 20% 이상 채워짐",
+  "result": "통과",
+  "evidence": "20% 미만: []"
+ },
+ {
+  "model": "국민노후보장패널 · 필요생활비 기준",
+  "step": "분할",
+  "claim": "학습 6,680행(2007–2013) · 시험 1,887행(2017·2019)",
+  "result": "통과",
+  "evidence": "label_v3.csv 학습 6680 · 시험 1887"
+ },
+ {
+  "model": "국민노후보장패널 · 필요생활비 기준",
+  "step": "LightGBM",
+  "claim": "고른 설정 leaves 15 · min_child 150 · 반복 89회 (내부 검증 AUC 0.706)",
+  "result": "통과",
+  "evidence": "v3_out tune"
+ },
+ {
+  "model": "국민노후보장패널 · 필요생활비 기준",
+  "step": "평가",
+  "claim": "시험 AUC 최종 0.796 vs 지금 소득 0.706 (차이 +0.089, 95% +0.062~+0.116)",
+  "result": "통과",
+  "evidence": "v3_out zoo == cmp"
+ },
+ {
+  "model": "국민노후보장패널 · 필요생활비 기준",
+  "step": "판단 보류",
+  "claim": "보정 행 = 내부 검증 3,208행",
+  "result": "통과",
+  "evidence": "내부 검증 행 3208"
+ },
+ {
+  "model": "한국노동패널",
+  "step": "입력",
+  "claim": "입력 39개 = 공통 17 + 추가 22",
+  "result": "통과",
+  "evidence": "v3_data 열 == v3_out data_info 열: True, 앞 17개 == COMMON: True"
+ },
+ {
+  "model": "한국노동패널",
+  "step": "입력",
+  "claim": "추가 입력이 모두 이름표·묶음에 들어감",
+  "result": "통과",
+  "evidence": "이름표 없는 열: []"
+ },
+ {
+  "model": "한국노동패널",
+  "step": "열 고르기",
+  "claim": "추가 x_ 변수는 모두 학습셋 20% 이상 채워짐",
+  "result": "통과",
+  "evidence": "20% 미만: []"
+ },
+ {
+  "model": "한국노동패널",
+  "step": "분할",
+  "claim": "학습 27,581행(2005–2015) · 시험 10,496행(2019·2020)",
+  "result": "통과",
+  "evidence": "label_v3.csv 학습 27581 · 시험 10496"
+ },
+ {
+  "model": "한국노동패널",
+  "step": "LightGBM",
+  "claim": "고른 설정 leaves 31 · min_child 150 · 반복 86회 (내부 검증 AUC 0.794)",
+  "result": "통과",
+  "evidence": "v3_out tune"
+ },
+ {
+  "model": "한국노동패널",
+  "step": "평가",
+  "claim": "시험 AUC 최종 0.807 vs 지금 소득 0.751 (차이 +0.056, 95% +0.045~+0.066)",
+  "result": "통과",
+  "evidence": "v3_out zoo == cmp"
+ },
+ {
+  "model": "한국노동패널",
+  "step": "판단 보류",
+  "claim": "보정 행 = 내부 검증 6,257행",
+  "result": "통과",
+  "evidence": "내부 검증 행 6257"
+ },
+ {
+  "model": "한국의료패널",
+  "step": "입력",
+  "claim": "입력 30개 = 공통 17 + 추가 13",
+  "result": "통과",
+  "evidence": "v3_data 열 == v3_out data_info 열: True, 앞 17개 == COMMON: True"
+ },
+ {
+  "model": "한국의료패널",
+  "step": "입력",
+  "claim": "추가 입력이 모두 이름표·묶음에 들어감",
+  "result": "통과",
+  "evidence": "이름표 없는 열: []"
+ },
+ {
+  "model": "한국의료패널",
+  "step": "열 고르기",
+  "claim": "추가 x_ 변수는 모두 학습셋 20% 이상 채워짐",
+  "result": "통과",
+  "evidence": "20% 미만: []"
+ },
+ {
+  "model": "한국의료패널",
+  "step": "분할",
+  "claim": "학습 17,839행(2009–2015) · 시험 5,034행(2020·2021)",
+  "result": "통과",
+  "evidence": "label_v3.csv 학습 17839 · 시험 5034"
+ },
+ {
+  "model": "한국의료패널",
+  "step": "LightGBM",
+  "claim": "고른 설정 leaves 15 · min_child 150 · 반복 64회 (내부 검증 AUC 0.810)",
+  "result": "통과",
+  "evidence": "v3_out tune"
+ },
+ {
+  "model": "한국의료패널",
+  "step": "평가",
+  "claim": "시험 AUC 최종 0.773 vs 지금 소득 0.740 (차이 +0.032, 95% +0.018~+0.047)",
+  "result": "통과",
+  "evidence": "v3_out zoo == cmp"
+ },
+ {
+  "model": "고령화연구패널",
+  "step": "입력",
+  "claim": "입력 43개 = 공통 17 + 추가 26",
+  "result": "통과",
+  "evidence": "v3_data 열 == v3_out data_info 열: True, 앞 17개 == COMMON: True"
+ },
+ {
+  "model": "고령화연구패널",
+  "step": "입력",
+  "claim": "추가 입력이 모두 이름표·묶음에 들어감",
+  "result": "통과",
+  "evidence": "이름표 없는 열: []"
+ },
+ {
+  "model": "고령화연구패널",
+  "step": "열 고르기",
+  "claim": "추가 x_ 변수는 모두 학습셋 20% 이상 채워짐",
+  "result": "통과",
+  "evidence": "20% 미만: []"
+ },
+ {
+  "model": "고령화연구패널",
+  "step": "분할",
+  "claim": "학습 10,198행(2006–2012) · 시험 3,692행(2016·2018)",
+  "result": "통과",
+  "evidence": "label_v3.csv 학습 10198 · 시험 3692"
+ },
+ {
+  "model": "고령화연구패널",
+  "step": "LightGBM",
+  "claim": "고른 설정 leaves 15 · min_child 150 · 반복 90회 (내부 검증 AUC 0.785)",
+  "result": "통과",
+  "evidence": "v3_out tune"
+ },
+ {
+  "model": "고령화연구패널",
+  "step": "평가",
+  "claim": "시험 AUC 최종 0.774 vs 지금 소득 0.757 (차이 +0.017, 95% +0.001~+0.032)",
+  "result": "통과",
+  "evidence": "v3_out zoo == cmp"
+ },
+ {
+  "model": "통합 모델(판정 3 + 노동)",
+  "step": "입력",
+  "claim": "입력 = 공통 17 + 지금 소득(판정 기준) + 2년 변화(판정 기준) + 패널 표시 4개 = 23개",
+  "result": "통과",
+  "evidence": "v3_full.py 4절"
+ },
+ {
+  "model": "통합 모델(판정 3 + 노동)",
+  "step": "데이터",
+  "claim": "4개 과제 학습셋 합 69,147행 = 학습곡선 100% 지점",
+  "result": "통과",
+  "evidence": "lc 최대 n 69147"
+ },
+ {
+  "model": "통합 모델(판정 3 + 노동)",
+  "step": "LightGBM",
+  "claim": "고정 설정(격자 탐색 없음): leaves 31 · min_child 80 · 학습률 0.03 · 행·열 0.8, 600회(학습곡선)·800회(반복 곡선)·300회(셔플)",
+  "result": "통과",
+  "evidence": "v3_full.py 4절"
+ },
+ {
+  "model": "통합 모델(판정 3 + 노동)",
+  "step": "학습곡선",
+  "claim": "학습 행 691 → 69,147에서 시험 AUC 0.746 → 0.804",
+  "result": "통과",
+  "evidence": "v3_out lc"
+ },
+ {
+  "model": "통합 모델(판정 3 + 노동)",
+  "step": "셔플",
+  "claim": "정답만 섞어 5번 학습 → 시험 AUC 평균 0.486",
+  "result": "통과",
+  "evidence": "[0.48, 0.512, 0.487, 0.505, 0.445]"
+ },
+ {
+  "model": "이식 모델(공통 입력)",
+  "step": "입력",
+  "claim": "입력 = 공통 17 + 지금 소득(그 패널 기준선 대비) = 18개",
+  "result": "통과",
+  "evidence": "v3_full.py 6절"
+ },
+ {
+  "model": "이식 모델(공통 입력)",
+  "step": "LightGBM",
+  "claim": "고정 설정: 500회 · leaves 15 · min_child 80 · 학습률 0.03, 패널 A 학습셋으로 학습 → 패널 B 시험셋에 적용",
+  "result": "통과",
+  "evidence": "v3_full.py 6절"
+ },
+ {
+  "model": "이식 모델(공통 입력)",
+  "step": "보정",
+  "claim": "다른 패널에 쓸 때 확률 크기는 그 패널 내부 검증으로 Platt 재보정(순위·AUC는 그대로)",
+  "result": "통과",
+  "evidence": "v3_full.py 6절"
+ },
+ {
+  "model": "이식 모델(공통 입력)",
+  "step": "결과",
+  "claim": "6×6 교차 AUC 표 모두 채워짐",
+  "result": "통과",
+  "evidence": "(6, 6)"
+ },
+ {
+  "model": "서비스 모델 S20",
+  "step": "입력",
+  "claim": "입력 30개 = 화면 문항으로 만들 수 있는 변수만",
+  "result": "통과",
+  "evidence": "코드 BASE == s_out 열 == 배포 meta 열"
+ },
+ {
+  "model": "서비스 모델 S20",
+  "step": "학습",
+  "claim": "연구 모델과 같은 학습 함수(극단값·내부 분할·2×2 격자·×1.1 재학습·로지스틱) · 복지패널 같은 학습/시험 행",
+  "result": "통과",
+  "evidence": "학습 27294 · 시험 4984"
+ },
+ {
+  "model": "서비스 모델 S20",
+  "step": "앙상블",
+  "claim": "최종 = LightGBM·로지스틱 점수를 각각 시험셋 분포(1001개 분위)에서의 위치로 바꿔 평균 (연구 모델의 순위 평균을 한 사람에게도 쓰도록 바꾼 것)",
+  "result": "통과",
+  "evidence": "spkg_predict.run · meta ref_quantiles 1001개"
+ },
+ {
+  "model": "서비스 모델 S20",
+  "step": "판단 보류",
+  "claim": "보류 경계 q1 0.9378 · q0 0.2630 (α=0.10) = 배포 파일 값",
+  "result": "통과",
+  "evidence": "meta conformal"
+ },
+ {
+  "model": "서비스 모델 S20",
+  "step": "평가",
+  "claim": "시험 AUC 0.868 (전체 입력 0.870, 지금 소득 0.811) · 포함률 0.897/0.929 · 보류 28.3%",
+  "result": "통과",
+  "evidence": "사전 기준 pass1 True · pass2 True"
+ },
+ {
+  "model": "서비스 모델 S21",
+  "step": "입력",
+  "claim": "입력 31개 = 화면 문항으로 만들 수 있는 변수만",
+  "result": "통과",
+  "evidence": "코드 BASE == s_out 열 == 배포 meta 열"
+ },
+ {
+  "model": "서비스 모델 S21",
+  "step": "학습",
+  "claim": "연구 모델과 같은 학습 함수(극단값·내부 분할·2×2 격자·×1.1 재학습·로지스틱) · 복지패널 같은 학습/시험 행",
+  "result": "통과",
+  "evidence": "학습 27294 · 시험 4984"
+ },
+ {
+  "model": "서비스 모델 S21",
+  "step": "앙상블",
+  "claim": "최종 = LightGBM·로지스틱 점수를 각각 시험셋 분포(1001개 분위)에서의 위치로 바꿔 평균 (연구 모델의 순위 평균을 한 사람에게도 쓰도록 바꾼 것)",
+  "result": "통과",
+  "evidence": "spkg_predict.run · meta ref_quantiles 1001개"
+ },
+ {
+  "model": "서비스 모델 S21",
+  "step": "판단 보류",
+  "claim": "보류 경계 q1 0.9413 · q0 0.2570 (α=0.10) = 배포 파일 값",
+  "result": "통과",
+  "evidence": "meta conformal"
+ },
+ {
+  "model": "서비스 모델 S21",
+  "step": "평가",
+  "claim": "시험 AUC 0.869 (전체 입력 0.870, 지금 소득 0.811) · 포함률 0.900/0.924 · 보류 27.2%",
+  "result": "통과",
+  "evidence": "사전 기준 pass1 True · pass2 True"
+ },
+ {
+  "model": "서비스 공통(배포 코드)",
+  "step": "대상 확인",
+  "claim": "50~69세만, 지금 소득 > 0, 기준선 아래(r<1)면 B20으로",
+  "result": "통과",
+  "evidence": "spkg_predict.predict"
+ },
+ {
+  "model": "서비스 공통(배포 코드)",
+  "step": "건강 문항",
+  "claim": "건강 답이 있으면 S21, 없으면 S20",
+  "result": "통과",
+  "evidence": "spkg_predict.predict"
+ },
+ {
+  "model": "서비스 공통(배포 코드)",
+  "step": "변환",
+  "claim": "월 실수령 × 12 → 2023년 가격 → √가구원 → 그 해 기준선 대비 → 로그",
+  "result": "통과",
+  "evidence": "spkg_predict.features"
+ },
+ {
+  "model": "서비스 공통(배포 코드)",
+  "step": "등급",
+  "claim": "상위 20% = high, 20~40% = mid, 나머지 = low",
+  "result": "통과",
+  "evidence": "spkg_predict.run"
+ },
+ {
+  "model": "서비스 공통(배포 코드)",
+  "step": "이유",
+  "claim": "이유 3개 = LightGBM 기여의 절댓값 상위 3개(올린 쪽·내린 쪽 모두)",
+  "result": "통과",
+  "evidence": "spkg_predict.run"
+ },
+ {
+  "model": "서비스 공통(배포 코드)",
+  "step": "화면 경로",
+  "claim": "시험 행을 화면 답으로 되돌려 같은 변수가 나오는지: 점수 상관 0.9995, AUC 0.8684 → 0.8678",
+  "result": "통과",
+  "evidence": "s_pathcheck.pkl"
+ },
+ {
+  "model": "기준선 아래 모델 B20",
+  "step": "대상",
+  "claim": "복지패널 50~69세 · 0 < r < 1 · 같은 정답 정의 → y=1이면 2년 뒤에도 아래에 머묾",
+  "result": "통과",
+  "evidence": "b_model.py"
+ },
+ {
+  "model": "기준선 아래 모델 B20",
+  "step": "입력",
+  "claim": "입력 = S20과 같은 30개",
+  "result": "통과",
+  "evidence": "b_out 열 == BASE == 배포 meta"
+ },
+ {
+  "model": "기준선 아래 모델 B20",
+  "step": "사전 기준",
+  "claim": "C1 표본 · C2 DeLong 하한 +0.091 > 0 · C3 포함률 0.892/0.939 ≥ 0.85",
+  "result": "통과",
+  "evidence": "prereg_B.txt"
+ },
+ {
+  "model": "기준선 아래 모델 B20",
+  "step": "분할",
+  "claim": "학습 11,990 · 시험 1,131행 (시험 2020·2021)",
+  "result": "통과",
+  "evidence": "b_out res"
+ }
+]

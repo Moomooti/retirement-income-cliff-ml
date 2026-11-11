@@ -1,0 +1,121 @@
+     panel          comp   auc_a   auc_b   delta      se       p      n   pos    se_a
+0   KOWEPS    full_vs_B0  0.7952  0.7771  0.0181  0.0066  0.0059   7123   490  0.0105
+1   KOWEPS  common_vs_B0  0.7855  0.7771  0.0084  0.0068  0.2132   7123   490  0.0107
+9    KLIPS    full_vs_B0  0.7844  0.7235  0.0609  0.0067  0.0000  11390  1034  0.0072
+10   KLIPS  common_vs_B0  0.7767  0.7235  0.0532  0.0063  0.0000  11390  1034  0.0072
+18  NaSTaB    full_vs_B0  0.7957  0.7736  0.0221  0.0068  0.0012   8595   725  0.0083
+19  NaSTaB  common_vs_B0  0.7888  0.7736  0.0152  0.0064  0.0180   8595   725  0.0085
+27     KHP    full_vs_B0  0.7588  0.7360  0.0228  0.0086  0.0076   5850   603  0.0107
+28     KHP  common_vs_B0  0.7481  0.7360  0.0121  0.0084  0.1502   5850   603  0.0107
+36   KLoSA    full_vs_B0  0.7247  0.6924  0.0323  0.0082  0.0001   2977   637  0.0112
+37   KLoSA  common_vs_B0  0.7105  0.6924  0.0181  0.0080  0.0246   2977   637  0.0118
+45   KReIS    full_vs_B0  0.6686  0.6394  0.0293  0.0192  0.1269   1454   238  0.0197
+46   KReIS  common_vs_B0  0.6750  0.6394  0.0356  0.0160  0.0259   1454   238  0.0204
+full_vs_B0 {'est': np.float64(0.0312), 'se': np.float64(0.0077), 'lo': np.float64(0.0161), 'hi': np.float64(0.0463), 'p': np.float64(0.0001), 'tau2': np.float64(0.0003), 'I2': np.float64(0.8116), 'Q': np.float64(26.5431), 'fe': np.float64(0.0319)}
+common_vs_B0 {'est': np.float64(0.0232), 'se': np.float64(0.0081), 'lo': np.float64(0.0073), 'hi': np.float64(0.0392), 'p': np.float64(0.0042), 'tau2': np.float64(0.0003), 'I2': np.float64(0.844), 'Q': np.float64(32.0489), 'fe': np.float64(0.0238)}
+full_vs_B1 {'est': np.float64(0.0211), 'se': np.float64(0.0035), 'lo': np.float64(0.0141), 'hi': np.float64(0.028), 'p': np.float64(0.0), 'tau2': np.float64(0.0), 'I2': np.float64(0.2713), 'Q': np.float64(6.8616), 'fe': np.float64(0.021)}
+full_vs_common {'est': np.float64(0.0087), 'se': np.float64(0.0021), 'lo': np.float64(0.0047), 'hi': np.float64(0.0128), 'p': np.float64(0.0), 'tau2': 0, 'I2': 0, 'Q': np.float64(2.3984), 'fe': np.float64(0.0087)}
+stack_vs_B0 {'est': np.float64(0.0453), 'se': np.float64(0.0089), 'lo': np.float64(0.0278), 'hi': np.float64(0.0627), 'p': np.float64(0.0), 'tau2': np.float64(0.0004), 'I2': np.float64(0.8853), 'Q': np.float64(43.608), 'fe': np.float64(0.0441)}
+full_vs_linear {'est': np.float64(-0.0099), 'se': np.float64(0.0019), 'lo': np.float64(-0.0137), 'hi': np.float64(-0.0061), 'p': np.float64(0.0), 'tau2': 0, 'I2': 0, 'Q': np.float64(4.5229), 'fe': np.float64(-0.0099)}
+lgbm_vs_B0 {'est': np.float64(0.0448), 'se': np.float64(0.0085), 'lo': np.float64(0.0282), 'hi': np.float64(0.0614), 'p': np.float64(0.0), 'tau2': np.float64(0.0004), 'I2': np.float64(0.881), 'Q': np.float64(42.0003), 'fe': np.float64(0.0429)}
+xgb_vs_B0 {'est': np.float64(0.0444), 'se': np.float64(0.009), 'lo': np.float64(0.0268), 'hi': np.float64(0.0621), 'p': np.float64(0.0), 'tau2': np.float64(0.0004), 'I2': np.float64(0.8924), 'Q': np.float64(46.4755), 'fe': np.float64(0.0428)}
+cat_vs_B0 {'est': np.float64(0.0449), 'se': np.float64(0.0088), 'lo': np.float64(0.0276), 'hi': np.float64(0.0621), 'p': np.float64(0.0), 'tau2': np.float64(0.0004), 'I2': np.float64(0.8933), 'Q': np.float64(46.8394), 'fe': np.float64(0.0433)}
+auc_full {'est': np.float64(0.7577), 'se': np.float64(0.0148), 'lo': np.float64(0.7287), 'hi': np.float64(0.7866), 'p': np.float64(0.0), 'tau2': np.float64(0.0012), 'I2': np.float64(0.9205), 'Q': np.float64(62.911), 'fe': np.float64(0.7726)}
+auc_b0 {'est': np.float64(0.7263), 'se': np.float64(0.0166), 'lo': np.float64(0.6937), 'hi': np.float64(0.7588), 'p': np.float64(0.0), 'tau2': np.float64(0.0015), 'I2': np.float64(0.9255), 'Q': np.float64(67.1233), 'fe': np.float64(0.7375)}
+auc_common {'est': np.float64(0.7505), 'se': np.float64(0.0144), 'lo': np.float64(0.7222), 'hi': np.float64(0.7788), 'p': np.float64(0.0), 'tau2': np.float64(0.0011), 'I2': np.float64(0.913), 'Q': np.float64(57.4691), 'fe': np.float64(0.7645)}
+model      ML    계산기   현재소득
+panel                      
+KHP     0.526  0.473  0.509
+KLIPS   0.541  0.498  0.466
+KLoSA   0.419  0.377  0.386
+KOWEPS  0.606  0.557  0.553
+KReIS   0.429  0.370  0.370
+NaSTaB  0.574  0.572  0.567
+      panel           feature       imp        sd
+139   KLoSA         log_ratio  0.102875  0.007263
+78   NaSTaB         log_ratio  0.084635  0.004568
+0    KOWEPS         log_ratio  0.080044  0.001572
+180   KReIS         log_ratio  0.076748  0.004844
+41    KLIPS         log_ratio  0.072014  0.003619
+123     KHP    min_ratio_hist  0.059978  0.006548
+111     KHP         log_ratio  0.053162  0.004176
+214   KReIS       x_hh_earn_r  0.021236  0.004452
+90   NaSTaB    min_ratio_hist  0.016816  0.002274
+146   KLoSA            hhsize  0.016787  0.002002
+137     KHP    d_log_ratio_1y  0.014660  0.001489
+53    KLIPS    min_ratio_hist  0.014422  0.004220
+85   NaSTaB            hhsize  0.014408  0.001013
+215   KReIS  x_pub_transfer_r  0.013738  0.007273
+12   KOWEPS    min_ratio_hist  0.012340  0.003736
+194   KReIS       lost_job_2y  0.011729  0.004023
+48    KLIPS            hhsize  0.009478  0.001501
+151   KLoSA    min_ratio_hist  0.009350  0.003406
+217   KReIS    x_fin_income_r  0.009233  0.001581
+81   NaSTaB        age_to_nps  0.009017  0.001921
+192   KReIS    min_ratio_hist  0.008821  0.004520
+178   KLoSA   lg_x_net_assets  0.008316  0.001856
+70    KLIPS      x_earn_share  0.007935  0.001412
+174   KLoSA   x_pension_amt_r  0.007472  0.000976
+69    KLIPS    d_log_ratio_1y  0.007453  0.001171
+172   KLoSA    x_net_assets_r  0.007112  0.000907
+64    KLIPS          x_region  0.006099  0.000768
+104  NaSTaB    d_log_ratio_1y  0.006081  0.003623
+109  NaSTaB   lg_x_fin_assets  0.005854  0.002415
+116     KHP              edu3  0.005455  0.001007
+119     KHP          employed  0.004847  0.001457
+120     KHP    d_log_ratio_2y  0.004586  0.002245
+39   KOWEPS         lg_x_debt  0.004300  0.000787
+22   KOWEPS             x_occ  0.004077  0.001893
+7    KOWEPS            hhsize  0.003874  0.000659
+33   KOWEPS      x_earn_share  0.003149  0.001110
+{
+ "KOWEPS": {
+  "brier": 0.060461256854468716,
+  "base": 0.0640590049941533,
+  "mean_pred": 0.09342815567046546,
+  "obs": 0.06879123964621649,
+  "ap": 0.26828360092385817,
+  "ap_b0": 0.2505451969578866
+ },
+ "KLIPS": {
+  "brier": 0.07630318224574928,
+  "base": 0.08254012692309767,
+  "mean_pred": 0.11213626684354876,
+  "obs": 0.09078138718173837,
+  "ap": 0.28449530726659134,
+  "ap_b0": 0.21939569576665532
+ },
+ "NaSTaB": {
+  "brier": 0.07071340007012056,
+  "base": 0.07723621394664767,
+  "mean_pred": 0.11820837355818675,
+  "obs": 0.08435136707388016,
+  "ap": 0.2765101654803969,
+  "ap_b0": 0.2515895004718929
+ },
+ "KHP": {
+  "brier": 0.08343219514682931,
+  "base": 0.09245207100591717,
+  "mean_pred": 0.08342492195408494,
+  "obs": 0.10307692307692308,
+  "ap": 0.29532974184525945,
+  "ap_b0": 0.256933662799287
+ },
+ "KLoSA": {
+  "brier": 0.15464592999950547,
+  "base": 0.16818901241395093,
+  "mean_pred": 0.1606138236959191,
+  "obs": 0.21397379912663755,
+  "ap": 0.40733215787596233,
+  "ap_b0": 0.3798384707242435
+ },
+ "KReIS": {
+  "brier": 0.13869158146777733,
+  "base": 0.13689315061235996,
+  "mean_pred": 0.09579247451365112,
+  "obs": 0.16368638239339753,
+  "ap": 0.2968343156674255,
+  "ap_b0": 0.3095000707664315
+ }
+}
+DONE

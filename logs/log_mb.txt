@@ -1,0 +1,11 @@
+KOWEPS_r M-B adaptive 0.857 q 7.4 fixed12 0.852 all 0.856
+KOWEPS_r done 31 s
+NaSTaB_r M-B adaptive 0.784 q 10.8 fixed12 0.782 all 0.788
+NaSTaB_r done 18 s
+KReIS_r M-B adaptive 0.714 q 10.1 fixed12 0.732 all 0.757
+KReIS_r done 18 s
+KReIS_rn M-B adaptive 0.764 q 8.8 fixed12 0.775 all 0.791
+KReIS_rn done 20 s
+KLIPS_r M-B adaptive 0.789 q 10.7 fixed12 0.794 all 0.796
+KLIPS_r done 28 s
+{'B_verdict': '실패', 'B_ok': 2}
