@@ -1,0 +1,106 @@
+{
+ "res": {
+  "test_years": [
+   2020,
+   2021
+  ],
+  "n_tr": 11990,
+  "n_te": 1131,
+  "stay_rate": 0.6374889478337754,
+  "n_stay": 721,
+  "n_up": 410,
+  "auc_model": 0.8132099725990325,
+  "auc_b0": 0.6897026487601908,
+  "auc_lgb": 0.8046209532830418,
+  "auc_lr": 0.8070092351408953,
+  "delta": 0.12350732383884166,
+  "delta_lo": 0.09095597676892742,
+  "p": 1.032375782515286e-13,
+  "boot": [
+   0.1237450063526343,
+   0.09139527638203093,
+   0.15626809226090327
+  ],
+  "cov_pos": 0.8918169209431346,
+  "cov_neg": 0.9390243902439024,
+  "abstain": 0.46684350132625996,
+  "C1": true,
+  "C2": true,
+  "C3": true,
+  "inner": 0.7838081006850541,
+  "params": {
+   "num_leaves": 15,
+   "min_child_samples": 150
+  },
+  "iters": 256,
+  "n_feat": 30,
+  "bins": [
+   {
+    "lo": 0,
+    "hi": 20,
+    "n": 227,
+    "stay": 0.9647577092511013
+   },
+   {
+    "lo": 20,
+    "hi": 40,
+    "n": 225,
+    "stay": 0.8577777777777778
+   },
+   {
+    "lo": 40,
+    "hi": 60,
+    "n": 226,
+    "stay": 0.6283185840707964
+   },
+   {
+    "lo": 60,
+    "hi": 80,
+    "n": 226,
+    "stay": 0.46017699115044247
+   },
+   {
+    "lo": 80,
+    "hi": 100,
+    "n": 227,
+    "stay": 0.2775330396475771
+   }
+  ]
+ },
+ "params": {
+  "num_leaves": 15,
+  "min_child_samples": 150
+ },
+ "cols": [
+  "age",
+  "age_to_60",
+  "age_to_nps",
+  "female",
+  "married",
+  "edu3",
+  "hhsize",
+  "s_hhchg",
+  "x_pension_recv",
+  "x_retire_pension",
+  "x_private_pension",
+  "s_log_r",
+  "s_d1",
+  "s_d2",
+  "s_min3",
+  "s_vol3",
+  "employed",
+  "s_emp_l1",
+  "s_emp_l2",
+  "s_lost",
+  "x_regular",
+  "x_temp_daily",
+  "x_selfemp",
+  "s_owner",
+  "s_fin_r",
+  "s_debt_r",
+  "s_real_r",
+  "s_lg_fin",
+  "s_lg_debt",
+  "s_lg_real"
+ ]
+}

@@ -1,0 +1,7 @@
+panel,fs,model,auc,sec,inner,params,iters
+KReIS,common,XGBoost,0.6843245521892968,3.7,0.7477644308243611,"{'max_depth': 5, 'min_child_weight': 30, 'learning_rate': 0.03, 'subsample': 0.8, 'colsample_bytree': 0.8, 'reg_lambda': 1.0}",233
+KReIS,common,LightGBM,0.6919262770897834,2.3,0.7469220978570219,"{'num_leaves': 15, 'min_child_samples': 150, 'learning_rate': 0.03, 'subsample': 0.8, 'subsample_freq': 1, 'colsample_bytree': 0.8, 'reg_lambda': 1.0, 'verbose': -1}",159
+KReIS,common,CatBoost,0.6818920002211412,2.7,0.7476928707603394,"{'depth': 4, 'l2_leaf_reg': 10, 'learning_rate': 0.05}",99
+KReIS,full,XGBoost,0.7102948087129588,5.0,0.7513588218263657,"{'max_depth': 5, 'min_child_weight': 30, 'learning_rate': 0.03, 'subsample': 0.8, 'colsample_bytree': 0.8, 'reg_lambda': 1.0}",183
+KReIS,full,LightGBM,0.7062728051747015,3.1,0.7564084495501548,"{'num_leaves': 15, 'min_child_samples': 150, 'learning_rate': 0.03, 'subsample': 0.8, 'subsample_freq': 1, 'colsample_bytree': 0.8, 'reg_lambda': 1.0, 'verbose': -1}",156
+KReIS,full,CatBoost,0.7057994250331712,6.0,0.7608484510796829,"{'depth': 6, 'l2_leaf_reg': 10, 'learning_rate': 0.05}",149
